@@ -1,0 +1,55 @@
+\documentclass[aps,prd,twocolumn,superscriptaddress,groupedaddress]{revtex4}
+% Intended to be built with pdflatex, using the REVTEX 4 package.
+% Template taken from FermiLab APS Jouranl template.
+
+% packages
+\usepackage{amssymb}              % for \gtrsim ...
+\usepackage{amsmath}              % for \text, align, split ...
+\usepackage{graphicx}             % for \includegraphics
+\usepackage{hyperref}             % for \url and \href
+
+% commands/initialization
+\hyphenation{ALPGEN} % avoid incorrect hyphenation
+\hyphenation{EVTGEN} % ''
+\hyphenation{PYTHIA} % ''
+
+% *******************************************************************************
+\begin{document}
+
+\widetext
+\leftline{Compiled \today}
+\leftline{To be submitted to PRD}
+
+\title{Neutrino Oscillations in Neutron Star Mergers}
+
+\author{M.\ Brett Deaton}
+\affiliation{Joint Institute for Nuclear Astrophysics,
+  Michigan State University, East Lansing, MI 48824, USA}
+\affiliation{Department of Physics,
+  North Carolina State University, Raleigh, NC 27695, USA}
+\email{mbdeaton@ncsu.edu}
+
+\author{Evan O'Connor}
+\affiliation{Department of Physics,
+  North Carolina State University, Raleigh, NC 27695, USA}
+ 
+\author{G.\ C.\ McLaughlin}
+\affiliation{Department of Physics,
+  North Carolina State University, Raleigh, NC 27695, USA}
+
+% *******************************************************************************
+
+\begin{abstract}
+  This is our abstract.
+\end{abstract}
+
+\maketitle
+
+The neutrino emitting disk models are described in \cite{fouc2015-bhns_m1} and
+\cite{fouc2016-nsns}.
+The baryonic wind models are described in \cite{metz2014-red_or_blue} and
+\cite{fern2015-outflows_bh_spin}.
+
+\bibliography{references}
+
+\end{document}
