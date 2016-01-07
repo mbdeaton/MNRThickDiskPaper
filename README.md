@@ -2,24 +2,27 @@
 Deaton et al. 2016
 
 ### Overview
-We are studying the Matter-Neutrino Resonance (MNR) in ns merger environments. In
-this paper, we're extending Malkus et al.'s (2012,2013,2014) analytic thin disk
-model to account for geometric thickness. We want to know if the two distinct
-MNR behaviors---symmetric and standard---still occur when we move our model a few
-steps forward in realism.
+We are studying the Matter-Neutrino Resonance (MNR) in neutron star merger
+environments. In this paper, we're extending Malkus et al.'s (2012,2013,2014)
+analytic thin disk model to account for geometric thickness. We want to know if
+the two distinct MNR behaviors---symmetric and standard---still occur when we
+move our model a few steps forward in realism.
 
-__Questions__ How does the MNR effect neutrino flavor evolution around a disk
-if ...
+__Questions__.
+How does the MNR affect neutrino flavor evolution around a disk if ...
 
 1. ... it's geometrically thick?
 2. ... the emission and scattering neutrino-surfaces are distinct?
 3. ... the neutrino-surfaces are energy-dependent?
 
-__Audience__ Neutrino oscillation modelers. People pursuing the question: "Is
+__Audience__.
+Neutrino oscillation modelers. People pursuing the question: "Is
 neutrino-transformation likely to be relevant to nucleosynthesis in neutron star
-mergers?" (I.e. people familiar with MNR: we can breeze over the introduction.)
+mergers?" (These are people familiar with MNR so we can breeze over the
+introduction.)
 
-__Structure__ The paper could flow like this:
+__Structure__.
+The paper could flow like this:
 
 * quick overview of MNR (particularly Malkus's conclusions) and the physical
   scenarios that could produce it
