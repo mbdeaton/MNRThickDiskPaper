@@ -1,23 +1,35 @@
-# Neutrino Oscillations in Neutron Star Mergers
+# Matter-Neutrino Resonance Around Thick Disks
 Deaton et al. 2016
 
 ### Overview
-We are studying neutrino flavor transformations in neutron star mergers. The aims
-of this paper are 1) to educate ourselves and the merger modeling community about
-the toolbox of neutrino oscillations possible in environments with dense matter
-and large neutrino fluxes, and 2) to paint a qualitative picture for the
-astrophysics community (mainly nucleosynthesis folks) of where and when different
-types of oscillations may occur. If we fulfill our second aim, we will have a
-good start on the next stage of this project: figuring out how neutrino
-absorptions may effect the formation of heavy elements from merger outflows.
+We are studying the Matter-Neutrino Resonance (MNR) in ns merger environments. In
+this paper, we're extending Malkus et al.'s (2012,2013,2014) analytic thin disk
+model to account for geometric thickness. We want to know if the two distinct
+MNR behaviors---symmetric and standard---still occur when we move our model a few
+steps forward in realism.
 
-The principle statements of the paper are:
+__Questions__ How does the MNR effect neutrino flavor evolution around a disk
+if ...
 
-1. Here's a toy model for the relevant terms in the oscillations Hamiltonian.
-2. Here's how well it fits more nuanced models (ray tracing on Foucart's disks,
-   and wind profiles from Fernandez's disks).
-3. The different types of mergers produce different oscillations: here are the
-   categories.
+1. ... it's geometrically thick?
+2. ... the emission and scattering neutrino-surfaces are distinct?
+3. ... the neutrino-surfaces are energy-dependent?
+
+__Audience__ Neutrino oscillation modelers. People pursuing the question: "Is
+neutrino-transformation likely to be relevant to nucleosynthesis in neutron star
+mergers?" (I.e. people familiar with MNR: we can breeze over the introduction.)
+
+__Structure__ The paper could flow like this:
+
+* quick overview of MNR (particularly Malkus's conclusions) and the physical
+  scenarios that could produce it
+* present new, improved disks: a family of parameterized, hierarchical
+  models
+* defend the new models by comparing to hydro simulations (from Foucart and
+  Fernandez)
+* give formulation for calculating neutrino self-interaction potential via ray
+  tracing (instead of analytically as in Malkus's work)
+* present results from each model
 
 ### Build Instructions
 Compile the paper with the usual pdflatex sequence:
