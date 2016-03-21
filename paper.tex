@@ -3,10 +3,14 @@
 % Template taken from FermiLab APS Jouranl template.
 
 % packages
-\usepackage{amssymb}              % for \gtrsim ...
 \usepackage{amsmath}              % for \text, align, split ...
+\usepackage{bm}                   % for bold greek letters in math mode
+\usepackage{braket}               % for \bra \ket
 \usepackage{graphicx}             % for \includegraphics
 \usepackage{hyperref}             % for \url and \href
+\usepackage[bbgreekl]{mathbbol}   % for bb greek letters like \bbrho
+\usepackage{amssymb}              % for \gtrsim ... (load after mathbbol to
+%                                   use amssymb's serif'd Latin \mathbb)
 
 % commands/initialization
 \hyphenation{ALPGEN} % avoid incorrect hyphenation
@@ -20,7 +24,7 @@
 \leftline{Compiled \today}
 \leftline{To be submitted to PRD}
 
-\title{Neutrino Oscillations in Neutron Star Mergers}
+\title{The Matter Neutrino Resonance around Thick, Relativisitic Disks}
 
 \author{M.\ Brett Deaton}
 \affiliation{Joint Institute for Nuclear Astrophysics,
@@ -28,6 +32,10 @@
 \affiliation{Department of Physics,
   North Carolina State University, Raleigh, NC 27695, USA}
 \email{mbdeaton@ncsu.edu}
+
+\author{Yonglin Zhu}
+\affiliation{Department of Physics,
+  North Carolina State University, Raleigh, NC 27695, USA}
 
 \author{Evan O'Connor}
 \affiliation{Department of Physics,
@@ -47,10 +55,403 @@
 
 \maketitle
 
-The neutrino emitting disk models are described in \cite{fouc2015-bhns_m1} and
-\cite{fouc2016-nsns}.
-The baryonic wind models are described in \cite{metz2014-red_or_blue} and
-\cite{fern2015-outflows_bh_spin}.
+Some neutrino emitting disk models are described in \cite{fouc2015-bhns_m1} and
+\cite{fouc2016-nsns}, and baryonic wind models are described in
+\cite{metz2014-red_or_blue} and \cite{fern2015-outflows_bh_spin}.
+
+
+% *******************************************************************************
+\appendix
+
+\section{Definitions}
+
+This is a reference appendix; it won't be in the final paper.
+
+Vectors are typeset like $\bm{\Omega}$,
+and matrices are typeset like $\mathbb{H}$.
+We use naturalized units in which $\hbar=c=1$.
+
+\subsection*{Trajectories}
+\label{ssc:trajectories}
+Each trajectory is labeled by a pair of vectors
+giving some position on the trajectory, $\bm{x}$,
+and the normalized momentum at that position,
+$\bm{\Omega}\equiv\bm{p}/\varepsilon$.
+A family of trajectories shares the same $\bm{x}$; for example,
+the family of emission trajectories is ($\bm{x}_e,\bm{\Omega}$).
+%and the family of observation trajectories is ($\bm{x}_o,\bm{\Omega}$).
+
+Since $\bm{\Omega}$ is normalized, it really only has two degrees of freedom,
+which we can make explicit by defining it with respect to spherical polar
+angles
+\begin{equation}
+  \label{eq:angle_def}
+  \bm{\Omega} := (\sin\alpha\cos\beta,\sin\alpha\sin\beta,\cos\alpha).
+\end{equation}
+
+Each trajectory is parameterized by proper distance, $s$, increasing in
+the direction of $\bm{\Omega}$. We choose $s=0$ at $\bm{x}_e$.
+%and $s=s_o$ at $\bm{x}_o$.
+
+A neutrino trajectory in flat spacetime obeys the geodesic equations
+\begin{align}
+  \frac{d\bm{x}}{ds} = \bm{\Omega}, \qquad {\rm and} \qquad
+  \frac{d\bm{\Omega}}{ds} = 0. \nonumber
+\end{align}
+A solution may be written with respect to the emission point,
+\begin{equation}
+  \label{eq:trajectory_x_solution_from_xe}
+  \bm{x}(s) = \bm{x}_e + \int_{0}^{s}ds'\bm{\Omega}.
+\end{equation}
+%or the observation point,
+%\begin{equation}
+%  \label{eq:trajectory_x_solution_from_xo}
+%  \bm{x}(s) = \bm{x}_o + \int_{s_o}^{s}ds'\bm{\Omega}.
+%\end{equation}
+
+\subsection*{Density matrices and flavor evolution}
+The neutrino field at some point in phase space ($\bm{x};\bm{p}$)
+may be specified by the density matrix, $\bbrho(\bm{x};\bm{p})$.
+Given some fluid configuration, we can get $\bbrho$ as the solution to
+the quantum kinetic equations for neutrinos.
+We can't solve those for a general fluid configuration,
+but as an approximation, we can start by solving the Boltzmann equation for each
+flavor separately, giving us the neutrino distribution functions
+$f_{0,\nu_\alpha}(\bm{x};\bm{p})$. Then we compute
+\begin{equation}
+  \label{eq:def_unoscillated_rho}
+  \bbrho_0(\bm{x};\bm{p}) =
+  \sum\limits_{\alpha}f_{0,\nu_\alpha}(\bm{x};\bm{p})
+  \ket{\nu_\alpha} \bra{\nu_\alpha},
+\end{equation}
+where $\ket{\nu_\alpha}$ are the neutrino flavor eigenstates, and
+\begin{equation}
+  \label{eq:density_evolution}
+  \bbrho(\bm{x};\bm{p}) =
+  \mathbb{S}(\bm{x};\bm{p})\,
+  \bbrho_0(\bm{x};\bm{p})\,
+  \mathbb{S}^\dagger(\bm{x};\bm{p}),
+\end{equation}
+where $\mathbb{S}$ is the neutrino flavor evolution matrix.
+The antineutrino density matrix obeys
+$\bar{\bbrho} = \bar{\mathbb{S}}^*\,\bar{\bbrho}_0\,\bar{\mathbb{S}}^T$,
+with $\bar{\mathbb{S}}$ the antineutrino flavor evolution matrix.
+
+This approximation works as long as incoherent scattering is
+`insignificant' along the neutrino trajectory.
+(I have not figured out precisely what `insignificant' means here.)
+At every incoherent scattering
+event producing a neutrino of definite flavor $\nu_\beta$,
+$\bbrho$ resets to $\ket{\nu_\beta}\bra{\nu_\beta}$, and
+$\mathbb{S}$ resets to the identity matrix.
+So in th formalism that follows,
+the emission point, $\bm{x}_e$, marks the point of the
+last incoherent scattering event along our test trajectory.
+
+The neutrino flavor evolution matrix is found by integrating
+\begin{equation}
+  \label{eq:S_evolution}
+  i\frac{d}{ds} \mathbb{S}(\bm{x};\bm{p}) =
+  \mathbb{H}(\bm{x};\bm{p})\,
+  \mathbb{S}(\bm{x};\bm{p})
+\end{equation}
+along a given test trajectory ($\bm{x}_e;\bm{\Omega}$).
+The antineutrino evolution matrix obeys the same equation with
+$i\rightarrow-i$, and $\mathbb{H}\rightarrow\mathbb{H}^*$.
+We define the Hamiltonian below.
+
+Note that along this test trajectory $\bm{x}$ obeys 
+Eqn.~\ref{eq:trajectory_x_solution_from_xe}.
+We can also write our momentum in the form of an energy and an angle
+with $\bm{p}=\varepsilon\bm{\Omega}$.
+From here on we will use this notation in our arguments:
+\begin{equation}
+  \mathbb{H}(\bm{x};\bm{p}) \rightarrow
+  \mathbb{H}(s;\varepsilon,\bm{\Omega}). \nonumber
+\end{equation}
+
+\subsection*{Flavor evolution Hamiltonian}
+We analyze $\mathbb{H}$ in terms of its vacuum, matter, and neutrino
+contributions,
+\begin{equation}
+  \mathbb{H}(s;\varepsilon,\bm{\Omega}) \equiv
+  \mathbb{H}_V(\varepsilon) +
+  \mathbb{H}_e(s) +
+  \mathbb{H}_{\nu\nu}(s;\bm{\Omega}).
+\end{equation}
+Below we define these terms in the flavor basis.
+
+The vacuum term is
+\begin{equation}
+  \mathbb{H}_V(\varepsilon) \equiv \frac{1}{4\varepsilon}
+  \mathbb{U}
+  \mathbb{M}
+  \mathbb{U}^\dagger,
+\end{equation}
+with
+\begin{equation}
+  \mathbb{M} :\equiv
+  \left(
+  \begin{matrix}
+    -\Delta m^2_{21} & 0 & 0 \\
+    0 & \Delta m^2_{21} & 0 \\
+    0 & 0 & \Delta m^2_{31}+\Delta m^2_{32}
+  \end{matrix}
+  \right),
+\end{equation}
+and $\mathbb{U}$ the unitary mixing matrix, which is defined for example
+in \cite{giun2007-nu_phys_and_astro}.
+The squared-mass splittings are
+\begin{align}
+  \Delta m^2_{21} &= 7.59\times10^{-5}\,{\rm eV}^2, \nonumber\\
+  \Delta m^2_{32} &= 2.43\times10^{-3}\,{\rm eV}^2, \,{\rm and} \nonumber \\
+  \Delta m^2_{31} &= \Delta m^2_{21}+\Delta m^2_{32}. \nonumber
+\end{align}
+
+The matter term is
+\begin{equation}
+  \mathbb{H}_e(s) :\equiv
+  \left(
+  \begin{matrix}
+    V_e(s) & 0 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0
+  \end{matrix}
+  \right),
+\end{equation}
+where
+\begin{align}
+  V_e(s) & \equiv \sqrt{2} G_F (n_{e^-}-n_{e^+}) \nonumber \\
+  \label{eq:matter_potential}
+  &= \sqrt{2} G_F \frac{1}{m_N}\varrho(s)Y_e(s) 
+\end{align}
+with $G_F$ the Fermi constant,
+$n_{e^-}-n_{e^+}$  the net electron number density,
+$\varrho$ the rest mass density,
+$Y_e$ the electron fraction, and
+$m_N$ the mass per nucleon.
+
+The neutrino self-interaction term is
+\begin{multline}
+  \label{eq:H_nunu_full_form_1}
+  \mathbb{H}_{\nu\nu}(s;\bm{\Omega}) \equiv
+  \sqrt{2} G_F
+  \int \frac{d^3p'}{(2\pi)^3}
+  (1-\cos\Omega\cdot\Omega') \\
+  \times
+  \Big[\bbrho(s;\bm{p}')-\bar{\bbrho}(s;\bm{p}')\Big],
+\end{multline}
+where $\bm{p}'=\varepsilon' \bm{\Omega}'$ is an ambient neutrino
+momentum. We can rewrite Eqn.~\ref{eq:H_nunu_full_form_1} using
+Eqn.~\ref{eq:density_evolution} and
+$d^3p'=\varepsilon'^2 d\varepsilon' d\Omega'$:
+\begin{multline}
+  \label{eq:H_nunu_full_form_2}
+  \mathbb{H}_{\nu\nu}(s;\bm{\Omega}) =
+  \frac{\sqrt{2} G_F}{(2\pi)^3}
+  \oint d\Omega' \int d\varepsilon' \,\varepsilon'^2
+  (1-\cos\Omega\cdot\Omega') \\
+  \times \Big[
+    \mathbb{S}(s;\varepsilon',\bm{\Omega}')
+    \bbrho_0(s;\varepsilon',\bm{\Omega}')
+    \mathbb{S}^\dagger(s;\varepsilon',\bm{\Omega}') \\
+    -\bar{\mathbb{S}}^*(s;\varepsilon',\bm{\Omega}')
+    \bar{\bbrho}_0(s;\varepsilon',\bm{\Omega}')
+    \bar{\mathbb{S}}^T(s;\varepsilon',\bm{\Omega}')
+    \Big].
+\end{multline}
+To compute this at a single point on our trajectory, $\bm{x}(s)$,
+we need $\mathbb{S}(s)$ and $\bar{\mathbb{S}}(s)$ at all
+energies $\varepsilon'$ and angles $\bm{\Omega}'$. In the formalism
+we have developed thusfar, we can only get these by integrating
+Eqn.~\ref{eq:S_evolution} along all trajectories in the family
+sharing the point $\bm{x}(s)$; our problem is heavily recursive.
+
+\subsection*{Single-angle approximation}
+However, if we assume that every trajectory ($\bm{x}(s);\bm{\Omega}$)
+yields the same flavor evolution, then we can make the substitution
+\begin{equation}
+ \mathbb{S}(s;\varepsilon',\bm{\Omega}') \rightarrow
+ \mathbb{S}(s;\varepsilon',\bm{\Omega}), \nonumber
+\end{equation}
+and similarly for $\bar{\mathbb{S}}$, giving us
+\begin{multline}
+  \label{eq:H_nunu_single_angle}
+  \mathbb{H}_{\nu\nu}(s;\bm{\Omega}) =
+  \frac{\sqrt{2} G_F}{(2\pi)^3}
+  \oint d\Omega' \int d\varepsilon' \,\varepsilon'^2
+  (1-\cos\Omega\cdot\Omega') \\
+  \times \Big[
+    \mathbb{S}(s;\varepsilon',\bm{\Omega})
+    \bbrho_0(s;\varepsilon',\bm{\Omega}')
+    \mathbb{S}^\dagger(s;\varepsilon',\bm{\Omega}) \\
+    -\bar{\mathbb{S}}^*(s;\varepsilon',\bm{\Omega})
+    \bar{\bbrho}_0(s;\varepsilon',\bm{\Omega}')
+    \bar{\mathbb{S}}^T(s;\varepsilon',\bm{\Omega})
+    \Big].
+\end{multline}
+
+\subsection*{Self-interaction potentials}
+Having applied the single-angle approximation, we can now factor
+Eqn.~\ref{eq:H_nunu_single_angle} and perform the angle integration
+before we compute $\mathbb{S}$ and $\bar{\mathbb{S}}$:
+\begin{multline}
+  \label{eq:H_nunu_factored}
+  \mathbb{H}_{\nu\nu}(s;\bm{\Omega}) = \\
+  \int d\varepsilon' \,
+  \mathbb{S}(s;\varepsilon',\bm{\Omega})
+  \bigg[
+    \frac{1}{\Delta\varepsilon'}\mathbb{V}_0(s;\varepsilon',\bm{\Omega})
+    \bigg]
+  \mathbb{S}^\dagger(s;\varepsilon',\bm{\Omega}) \\
+  -\int d\varepsilon' \,
+  \bar{\mathbb{S}}^*(s;\varepsilon',\bm{\Omega})
+  \bigg[
+    \frac{1}{\Delta\varepsilon'} \bar{\mathbb{V}}_0(s;\varepsilon',\bm{\Omega})
+    \bigg]
+  \bar{\mathbb{S}}^T(s;\varepsilon',\bm{\Omega}).
+\end{multline}
+To simplify our equations we have defined
+\begin{multline}
+  \label{eq:nu_potential_matrix_1}
+  \mathbb{V}_0(s;\varepsilon',\bm{\Omega}) \equiv \\
+  \frac{\sqrt{2} G_F}{(2\pi)^3}\varepsilon'^2\Delta\varepsilon'
+    \oint d\Omega' 
+    (1-\cos\Omega\cdot\Omega')
+    \bbrho_0(s;\varepsilon',\bm{\Omega}').
+\end{multline}
+And $\bar{\mathbb{V}}_0$ is defined similarly with respect to $\bar{\bbrho}_0$.
+Note the new energy factor $\Delta\varepsilon'$ in our definition
+in Eqn.~\ref{eq:nu_potential_matrix_1}:
+this term gives $\mathbb{V}_0$ units of energy.
+We will find it simplifies things when we sum $\mathbb{V}_0$ over energy bins.
+
+Since $\bbrho_0$ and $\bar{\bbrho}_0$ are diagonal, we further
+define unoscillated neutrino potentials by
+\begin{multline}
+  \label{eq:nu_potential_matrix_2}
+  \mathbb{V}_0(s;\varepsilon',\bm{\Omega}) :\equiv \\
+  \left(
+  \begin{matrix}
+    V_{0,\nu_e}(s;\varepsilon',\bm{\Omega}) & 0 & 0 \\
+    0 & V_{0,\nu_x}(s;\varepsilon',\bm{\Omega}) & 0 \\
+    0 & 0 & V_{0,\nu_x}(s;\varepsilon',\bm{\Omega})
+  \end{matrix}
+  \right),
+\end{multline}
+and $\bar{\mathbb{V}}_0$ is the same matrix with
+$V_{0,\nu_\alpha} \rightarrow V_{0,\bar{\nu}_\alpha}$
+(but of course $V_{0,\nu_{\{\mu,\tau\}}}=V_{0,\bar{\nu}_{\{\mu,\tau\}}}$).
+
+For completeness, the neutrino potentials in
+Eqn.~\ref{eq:nu_potential_matrix_2} are defined
+\begin{multline}
+  \label{eq:nu_potential}
+  V_{0,\nu_\alpha}(s;\varepsilon',\bm{\Omega}) \equiv \\
+  \frac{\sqrt{2} G_F}{(2\pi)^3}\varepsilon'^2 \Delta\varepsilon'
+  \oint d\Omega'
+  (1-\cos\Omega\cdot\Omega')
+  f_{0,\nu_\alpha}(s;\varepsilon',\bm{\Omega}'),
+\end{multline}
+This follows from Eqn.~\ref{eq:def_unoscillated_rho}.
+
+\subsection*{Discretizing the integration}
+Now we can break our evolution equation, Eqn.~\ref{eq:S_evolution},
+into $N_\varepsilon$ coupled equations.
+We will integrate this system along our test trajectory
+($\bm{x}_e,\bm{\Omega}$).
+At each step along the trajectory,
+we combine the results from each energy equation in the self-interaction term,
+$\mathbb{H}_{\nu\nu}(s;\bm{\Omega})$, using Eqn.~\ref{eq:H_nunu_factored}.
+That integral becomes a discrete sum over the $N_\varepsilon$ energy bins:
+\begin{multline}
+  \label{eq:H_nunu_sum}
+  \mathbb{H}_{\nu\nu}(s;\bm{\Omega}) = \\
+  \sum\limits_{i=1}^{N_\varepsilon}
+  \mathbb{S}(s;\varepsilon'_i,\bm{\Omega})
+  \big[
+    \mathbb{V}_0(s;\varepsilon'_i,\bm{\Omega})
+    \big]
+  \mathbb{S}^\dagger(s;\varepsilon'_i,\bm{\Omega}) \\
+  - \sum\limits_{i=1}^{N_\varepsilon}
+  \bar{\mathbb{S}}^*(s;\varepsilon'_i,\bm{\Omega})
+  \big[
+    \bar{\mathbb{V}}_0(s;\varepsilon'_i,\bm{\Omega})
+    \big]
+  \bar{\mathbb{S}}^T(s;\varepsilon'_i,\bm{\Omega}).
+\end{multline}
+Note that the energy bin size $\Delta\varepsilon'$ in
+Eqn.~\ref{eq:H_nunu_factored} has canceled with the energy bin size arising from
+the discretization of the integral,
+$\int d\varepsilon' \rightarrow \sum \Delta\varepsilon'$.
+
+We compute $\mathbb{V}_0$ and $\bar{\mathbb{V}}_0$ before-hand by sampling
+the neutrino distribution functions at a grid of points in $\varepsilon$,
+$\cos\alpha$, and $\beta$.
+(These angles are defined in Eqn.~\ref{eq:angle_def}.)
+Eqn.~\ref{eq:nu_potential} discretizes to
+\begin{multline}
+  \label{eq:nu_potential_sum}
+  V_{0,\nu_\alpha}(s;\varepsilon'_i,\cos\alpha,\beta) \equiv \\
+  \frac{\sqrt{2} G_F}{(2\pi)^3}\varepsilon_i^{'2} \Delta\varepsilon'
+  \sum\limits_j^{N_\alpha} \sum\limits_k^{N_\beta}
+  \Delta(\cos\alpha') \Delta\beta'\\
+  \times \big(1-\cos\alpha\cos\alpha_j'-\sin\alpha\sin\alpha_j'\cos(\beta-\beta_k')\big)\\
+  \times f_{0,\nu_\alpha}(s;\varepsilon'_i,\cos\alpha_j',\beta_k').
+\end{multline}
+
+Our grid of samples is composed of
+$N_\varepsilon \times N_\alpha \times N_\beta$ points on cell centers.
+The points are
+\begin{align}
+  \varepsilon'_i \qquad&=\qquad \varepsilon'_{\rm min}
+  +\left(i-\frac{1}{2}\right)\Delta\varepsilon' \nonumber \\
+  \cos\alpha'_j  \qquad&=\qquad (\cos\alpha')_{\rm min}
+  +\left(j-\frac{1}{2}\right)\Delta(\cos\alpha')' \nonumber \\
+  \beta'_k       \qquad&=\qquad \beta'_{\rm min}
+  +\left(k-\frac{1}{2}\right)\Delta\beta', \nonumber
+\end{align}
+with indices beginning at 1, and all bin sizes defined like
+$\Delta a=(a_{\rm max}-a_{\rm min})/N_a$.
+
+\subsection*{Oscillated self-interaction potential}
+The Matter-Neutrino Resonance may occur along the test trajectory
+where $\mathbb{H}_e$ and $\mathbb{H}_{\nu\nu}$ are the same
+magnitude and differ by sign. If $\mathbb{S}$ and $\bar{\mathbb{S}}$ didn't
+evolve from identity, the self-interaction Hamiltonian would take the form
+\begin{equation}
+  \mathbb{H}_{\nu\nu,0}(s;\bm{\Omega}) :=
+  V_{\nu\nu,0}(s;\bm{\Omega})
+  \left(
+  \begin{matrix}
+    1 & 0 & 0 \\
+    0 & 0 & 0 \\
+    0 & 0 & 0
+  \end{matrix}
+  \right),
+\end{equation}
+where
+\begin{multline}
+  V_{\nu\nu,0}(s;\bm{\Omega}) \equiv \\
+  \sum\limits_i
+  \big((V_{0,\nu_e}(s;\varepsilon'_i,\bm{\Omega})
+  -V_{0,\bar{\nu}_e}(s;\varepsilon'_i,\bm{\Omega})\big).
+\end{multline}
+This is a nice quantity to compare to the matter potential
+in Eqn.~\ref{eq:matter_potential}: an MNR resonance may occur at
+$V_{\nu\nu,0}(s;\bm{\Omega})-V_e(s)\approx0$.
+
+However, as flavor evolution does take place, $\mathbb{H}_{\nu\nu}$
+develops a complex structure.
+We define the oscillated self-interaction potential as
+\begin{equation}
+  V_{\nu\nu}(s;\bm{\Omega}) \equiv
+  \big[\mathbb{H}_{\nu\nu}(s;\bm{\Omega})\big]_{ee}
+  - \frac{1}{3}Tr\,\mathbb{H}_{\nu\nu}(s;\bm{\Omega}).
+\end{equation}
+As an MNR evolves, the flavor evolution seems to force this quantity to obey
+$V_{\nu\nu}(s;\bm{\Omega})-V_e(s)\approx0$
+(as long as possible).
 
 \bibliography{references}
 
