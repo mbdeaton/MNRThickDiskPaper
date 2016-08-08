@@ -12,8 +12,13 @@ __Questions__.
 How does the MNR affect neutrino flavor evolution around a disk if ...
 
 1. ... it's geometrically thick?
-2. ... the emission and scattering neutrino-surfaces are distinct?
-3. ... the neutrino-surfaces are energy-dependent?
+2. ... general relativistic?
+3. ... the emission and scattering neutrino-surfaces are distinct?
+4. ... the neutrino-surfaces are energy-dependent?
+
+Each of these steps in realism can be decoupled from the others, but as a first
+sweep through the problem, we'll treat them in combination, by modeling the disk
+as an isentropic GR disk (a la Fishbone & Moncrief 1976).
 
 __Audience__.
 Neutrino oscillation modelers. People pursuing the question: "Is
@@ -26,13 +31,16 @@ The paper could flow like this:
 
 * quick overview of MNR (particularly Malkus's conclusions) and the physical
   scenarios that could produce it
-* present new, improved disks: a family of parameterized, hierarchical
-  models
+* present new, improved disks: a family of parameterized models
 * defend the new models by comparing to hydro simulations (from Foucart and
-  Fernandez)
+  Fernandez), and giving reasons why isentropic and constant angular momentum
+  disks provide a good bracket opposite the thin disk model
 * give formulation for calculating neutrino self-interaction potential via ray
-  tracing (instead of analytically as in Malkus's work)
-* present results from each model
+  tracing (instead of analytically as in Malkus's work), and reference the ray
+  tracing methods paper (git repo: PprRayTracingMethods) for ray tracing bits.
+* present results from the model
+* if the model can't be made to present either of the MNR phenomena, then analyze
+  it hierarchically by each of the physical effects detailed above
 
 ### Build Instructions
 Compile the paper with the usual pdflatex sequence:
